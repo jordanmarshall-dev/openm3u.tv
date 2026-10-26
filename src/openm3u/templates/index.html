@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open M3U: the basic cable of IPTV</title>
+<meta name="description" content="Free, publicly available live channels for your country in one playlist: tested, deduplicated, sorted into cable-style channel numbers, with a complete guide.">
+<meta property="og:title" content="Open M3U">
+<meta property="og:description" content="The basic cable of IPTV. Free, publicly available channels, real channel numbers, a complete guide.">
+<meta property="og:image" content="{{base}}/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f6f4ef;
+  --card: #fffdf8;
+  --ink: #1d1b18;
+  --soft: #6f6a60;
+  --rule: #e3ded3;
+  --signal: #c2410c;
+  --on-signal: #ffffff;
+  --term: #1d1b18;
+  --term-ink: #ece8df;
+  --term-soft: #9b958a;
+  --term-hi: #fb923c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141311;
+    --card: #1d1b18;
+    --ink: #ece8df;
+    --soft: #9b958a;
+    --rule: #302d28;
+    --signal: #fb923c;
+    --on-signal: #141311;
+    --term: #0f0e0c;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.55 "Outfit", system-ui, sans-serif;
+}
+main { max-width: 780px; margin: 0 auto; padding: 52px 20px 72px; }
+a { color: inherit; text-decoration-color: var(--signal); text-underline-offset: 3px; }
+a:hover { color: var(--signal); }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
+code, .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+
+.top { display: flex; justify-content: space-between; align-items: baseline; color: var(--soft); font-size: 15px; }
+.top a { text-decoration: none; }
+.top code { font-size: 13px; }
+
+.wordmark {
+  margin: 26px 0 0;
+  font-weight: 800;
+  font-size: clamp(46px, 12.5vw, 104px);
+  line-height: .95;
+  letter-spacing: -.03em;
+}
+.wordmark span { color: var(--signal); }
+.tagline {
+  margin: 14px 0 0;
+  color: var(--soft);
+  font-weight: 600;
+  font-size: clamp(13px, 2.6vw, 17px);
+  letter-spacing: .32em;
+  text-transform: uppercase;
+}
+.pitch { max-width: 33em; margin: 34px 0 0; font-size: 20px; line-height: 1.5; }
+
+h2 { margin: 60px 0 6px; font-size: 26px; font-weight: 800; letter-spacing: -.01em; }
+.lede { margin: 0 0 20px; color: var(--soft); max-width: 36em; }
+
+/* countries */
+.regions { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.region { border-bottom: 1px solid var(--rule); padding: 20px 0 14px; }
+.region-head { display: flex; align-items: baseline; gap: 14px; }
+.code { width: 2.4em; flex: none; color: var(--signal); font-weight: 800; font-size: 22px; }
+.region h3 { margin: 0; font-size: 22px; font-weight: 600; }
+.count { margin-left: auto; color: var(--soft); font-size: 15px; white-space: nowrap; }
+.indent { margin-left: calc(2.4em * 22 / 17 + 14px); }
+
+.copy { display: flex; gap: 8px; margin-top: 14px; }
+.copy input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+  font: 400 14px "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+.copy button {
+  padding: 0 20px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--signal);
+  color: var(--on-signal);
+  font: 600 15px "Outfit", system-ui, sans-serif;
+  cursor: pointer;
+}
+.copy button:active { transform: translateY(1px); }
+
+details > summary { cursor: pointer; list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+.fold > summary::before { content: "+"; display: inline-block; width: 1.1em; color: var(--signal); font-weight: 800; }
+.fold[open] > summary::before { content: "\2212"; }
+
+.folds { margin-top: 10px; }
+.folds > .fold > summary { padding: 5px 0; color: var(--soft); font-size: 15px; }
+.folds > .fold > summary b { color: var(--ink); font-weight: 500; }
+.folds > .fold[open] > summary { color: var(--ink); }
+.panel { padding: 6px 0 14px 1.1em; }
+.panel p { margin: 0 0 10px; font-size: 15px; color: var(--soft); max-width: 34em; }
+.panel .copy { margin-top: 0; }
+
+/* lineup: groups fold open to their channels */
+.groups { border-top: 1px solid var(--rule); }
+.group { border-bottom: 1px solid var(--rule); }
+.group > summary { display: grid; grid-template-columns: 1.1em 1fr auto 5.5em; align-items: baseline; padding: 8px 0; font-size: 15px; }
+.group > summary::before { grid-column: 1; }
+.group > summary .range { color: var(--soft); font-variant-numeric: tabular-nums; }
+.group > summary .n { color: var(--soft); text-align: right; font-variant-numeric: tabular-nums; }
+.group ol { list-style: none; margin: 0; padding: 2px 0 12px 1.1em; columns: 2; column-gap: 28px; font-size: 15px; }
+.group li { break-inside: avoid; display: flex; gap: 10px; padding: 1px 0; }
+.group li span { min-width: 3.4ch; color: var(--soft); font-variant-numeric: tabular-nums; }
+
+/* build report */
+pre.term {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: var(--term);
+  color: var(--term-ink);
+  font: 400 13px/1.65 "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+pre.term .p { color: var(--term-hi); }
+pre.term .k { color: var(--term-soft); }
+
+/* about */
+.spec { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
+.spec li { display: grid; grid-template-columns: 9.5em 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.spec code { color: var(--signal); font-size: 14px; padding-top: 3px; }
+.spec p { margin: 0; }
+
+.setup { margin-top: 28px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.setup + .setup { margin-top: 0; border-top: 0; }
+.setup > summary { padding: 16px 0; font-size: 20px; font-weight: 600; }
+.setup > div { padding: 0 0 20px 1.1em; max-width: 36em; }
+.setup ol { margin: 0 0 12px; padding-left: 1.3em; }
+.setup li { margin: 5px 0; }
+.setup li::marker { color: var(--signal); font-weight: 600; }
+.setup p { margin: 0 0 12px; }
+
+footer { margin-top: 60px; color: var(--soft); font-size: 15px; }
+footer p { margin: 0 0 10px; max-width: 36em; }
+
+@media (max-width: 560px) {
+  main { padding-top: 30px; }
+  .indent { margin-left: 0; }
+  .group ol { columns: 1; }
+  .group > summary { grid-template-columns: 1.1em 1fr auto 4.5em; }
+  .spec li { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .copy button { transition: background-color .15s; }
+}
+</style>
+</head>
+<body>
+<main>
+<div class="top">
+  <code>v1.0</code>
+  <a href="{{repo}}">Source on GitHub</a>
+</div>
+
+<h1 class="wordmark">open<span>m3u</span>.tv</h1>
+<p class="tagline">The basic cable of IPTV</p>
+
+<p class="pitch">The free, publicly available live channels for your country in one playlist.
+Tested, deduplicated, sorted into channel numbers like a cable lineup, and shipped with a
+guide that's actually complete.</p>
+
+<h2>Pick your country</h2>
+<p class="lede">Copy the playlist link into TiviMate or any IPTV app. The guide comes with it.
+Many channels only play in their own country. Rebuilt every three hours, last updated {{updated}}.</p>
+
+<ul class="regions">
+{{regions}}
+</ul>
+
+<h2>The basic cable of IPTV</h2>
+<p class="lede">Free, ad-supported channels are everywhere: streaming services like Samsung TV Plus
+and Pluto TV, and broadcasters' own public streams. The community lists that collect them are long
+and unsorted. Open M3U is the layer on top that organizes them like a cable lineup.</p>
+
+<ul class="spec">
+  <li><code>sources</code><p>Free streams that their owners make publicly available, merged into one playlist. Nothing that needs a login or subscription, nothing copy-protected, and no workarounds for region restrictions.</p></li>
+  <li><code>health</code><p>Every stream is opened before it's listed: the playlist, its best quality, and a real video segment. Dead, copy-protected and below-720p channels don't make it. Streams limited to their own country are checked from inside it.</p></li>
+  <li><code>dedupe</code><p>When the same channel is on two services, the better stream wins and the other is dropped.</p></li>
+  <li><code>numbers</code><p>Groups get their own hundred, the way cable does it: local stations below 100, news at 100, sports at 200, movies at 300. Numbers stay put between builds.</p></li>
+  <li><code>order</code><p>Broadcasters and big networks first in every group, and local news city by city.</p></li>
+  <li><code>series</code><p>Channels that loop a single show are spotted from their schedule and shelved, A to Z, in their own group.</p></li>
+  <li><code>guide</code><p>Listings for every slot, merged from several sources. Show names stay clean in the grid; episode numbers lead the description and movies carry their year.</p></li>
+</ul>
+
+<details class="fold setup">
+  <summary>Add it to TiviMate</summary>
+  <div>
+    <ol>
+      <li>Open TiviMate's settings, go to <b>Playlists</b>, and choose <b>Add playlist</b>.</li>
+      <li>Pick <b>Enter URL</b> and paste the playlist link for your country.</li>
+      <li>Press <b>Next</b>. TiviMate reads the guide link from the playlist and loads it for you.</li>
+      <li>Name it Open M3U and press <b>Done</b>.</li>
+    </ol>
+    <p>In other apps (IPTV Smarters, Kodi's PVR IPTV Simple Client, Channels, Jellyfin), add it as an
+    M3U URL. If the app asks for an EPG separately, use the guide link from your country's fold-out.</p>
+    <p>Set the playlist and guide to update daily so new channels appear and dead ones drop off.</p>
+  </div>
+</details>
+
+<details class="fold setup" id="about">
+  <summary>About these streams</summary>
+  <div>
+    <p>Open M3U doesn't host, record, relay or modify any video. The playlists are lists of links
+    to streams that their owners publish for free, with their own ads, the same links that public
+    community projects like iptv-org already collect. Your app plays each stream directly from
+    its owner.</p>
+    <p>Channels behind a login, a subscription or copy protection are never included, and
+    nothing here gets around a channel's regional restrictions. Many channels only play in their
+    own country.</p>
+    <p>Open M3U isn't affiliated with or endorsed by any channel, network or streaming service.
+    Channel names and logos belong to their owners. Each service's own terms of use still apply
+    to how you watch it.</p>
+    <p>If you own or represent a channel and would rather it wasn't listed,
+    <a href="{{repo}}/issues/new?template=removal.yml">ask here</a> and it will be removed.</p>
+  </div>
+</details>
+
+<footer>
+  <p>Open M3U is an open-source curator. Channel lists come from
+  <a href="https://github.com/matthuisman/i.mjh.nz">Matt Huisman's feeds</a>,
+  <a href="https://github.com/iptv-org/iptv">iptv-org</a> and its <a href="https://github.com/iptv-org/database">database</a>;
+  guide data from <a href="https://epgshare01.online">epgshare01</a> and Matt's feeds; logos from
+  <a href="https://github.com/tv-logo/tv-logos">tv-logos</a>.</p>
+  <p>Channel not playing? <a href="{{repo}}/issues/new?template=broken-channel.yml">Report it</a>.
+  Own a channel and want it removed? <a href="{{repo}}/issues/new?template=removal.yml">Ask here</a>.
+  <a href="#about">About these streams</a>.</p>
+</footer>
+</main>
+<script>
+document.querySelectorAll(".copy button").forEach(function (button) {
+  button.addEventListener("click", function () {
+    var field = button.previousElementSibling;
+    field.select();
+    var done = function () {
+      button.textContent = "Copied";
+      setTimeout(function () { button.textContent = "Copy"; }, 1600);
+    };
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(field.value).then(done, function () { document.execCommand("copy"); done(); });
+    } else {
+      document.execCommand("copy");
+      done();
+    }
+  });
+});
+document.querySelectorAll("time[data-ts]").forEach(function (t) {
+  var minutes = Math.round((Date.now() / 1000 - t.dataset.ts) / 60);
+  t.textContent = minutes < 2 ? "just now" : minutes < 60 ? minutes + " minutes ago" : Math.round(minutes / 60) + " hours ago";
+});
+</script>
+</body>
+</html>

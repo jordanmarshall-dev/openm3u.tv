@@ -1,0 +1,20 @@
+# Settings for the public site, built by .github/workflows/publish.yml.
+
+public_url = "https://jordanmarshall-dev.github.io/openm3u.tv"
+# Once openm3u.tv points at GitHub Pages, set this. It writes the CNAME file and
+# switches every link (playlists, guides, state) to the domain.
+domain = ""
+# The address before the rename. Channel numbers are read from here once if the
+# new site hasn't published any yet.
+previous_url = ""
+guide_hours = 48
+
+[health]
+concurrency = 8
+timeout = 12
+# The builder runs on GitHub's servers in the US. For any other region, a stream
+# answering "forbidden" from there is most likely saying "not from here", so it's
+# kept as unverified, unless checks/<region>.json (from `openm3u verify`, run in
+# that country) says otherwise.
+runs_in = "us"
+check_days = 14

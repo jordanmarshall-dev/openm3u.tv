@@ -1,0 +1,33 @@
+code = "nz"
+name = "New Zealand"
+language = "en"
+layout = 1
+logos = ["new-zealand"]
+
+hide = ["TVSN Shopping", "CH200"]
+
+featured = ["TVNZ*", "Three*", "Whakaata*", "Sky Open*", "Bravo*", "DUKE*", "eden*", "RUSH*"]
+
+guides = [
+  "https://epgshare01.online/epgshare01/epg_ripper_NZ1.xml.gz",
+  "https://i.mjh.nz/Plex/nz.xml.gz",
+  "https://i.mjh.nz/SamsungTVPlus/all.xml.gz",
+]
+
+[groups.local]
+name = "Free to Air"
+keep_numbers = true
+
+[aliases]
+"MovieSphere" = "MovieSphere by Lionsgate"
+
+# Free-to-air channels from Matt Huisman's feeds.
+[[sources]]
+name = "freeview"
+type = "free-to-air"
+path = "nz"
+
+[[sources]]
+type = "iptv-org"
+country = "NZ"
+files = ["nz", "nz_samsung"]

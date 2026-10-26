@@ -1,0 +1,59 @@
+code = "us"
+name = "United States"
+language = "en"
+layout = 1
+logos = ["united-states"]
+
+featured = [
+  "ABC News*", "CBS News*", "NBC News*", "FOX Weather*", "LiveNOW*", "NewsNation*",
+  "Bloomberg*", "CNN*", "Reuters*", "Scripps News*", "The Weather Channel*", "USA TODAY*",
+  "NFL*", "NBA*", "The NBA*", "MLB*", "NHL*", "FOX Sports*", "CBS Sports*", "NBC Sports*",
+  "PGA*", "NASCAR*", "FIFA+", "UFC",
+  "AMC*", "Paramount*", "MGM*", "Lionsgate*", "MovieSphere*",
+  "Comedy Central*", "MTV*", "Nick*", "PBS*", "BBC*", "A&E*", "History*", "Food Network*",
+  "HGTV*", "Bravo*", "E!*", "Pluto TV *",
+]
+
+guides = [
+  "https://epgshare01.online/epgshare01/epg_ripper_US2.xml.gz",
+  "https://epgshare01.online/epgshare01/epg_ripper_US_LOCALS1.xml.gz",
+  "https://epgshare01.online/epgshare01/epg_ripper_US_SPORTS1.xml.gz",
+  "https://i.mjh.nz/Plex/us.xml.gz",
+  "https://i.mjh.nz/Roku/all.xml.gz",
+  "https://i.mjh.nz/PBS/all.xml.gz",
+]
+
+[[languages]]
+code = "es"
+name = "En español"
+start = 1400
+
+[aliases]
+"MovieSphere" = "MovieSphere by Lionsgate"
+
+[[sources]]
+type = "samsung"
+region = "us"
+
+[[sources]]
+type = "pluto"
+region = "us"
+
+# Every free service iptv-org tracks for the US: the broadcasters' own streams,
+# local stations, and the FAST services (Tubi, Xumo, STIRR, Roku, Plex, Vizio,
+# TCL, Fire TV, Local Now and more). Samsung and Pluto come from the feeds above.
+[[sources]]
+type = "iptv-org"
+country = "US"
+files = [
+  "us", "us_local", "us_abcnews", "us_cbsn", "us_pbs", "us_tubi", "us_xumo", "us_stirr",
+  "us_roku", "us_plex", "us_vizio", "us_tcl", "us_firetv", "us_distro", "us_sofast",
+  "us_klowdtv", "us_frequency", "us_amagi", "us_wowza", "us_uplynk", "us_cineversetv",
+  "us_canelatv", "us_glewedtv", "us_afrolandtv", "us_30a", "us_wfmz", "us_wcetv",
+  "us_vegasplus", "us_malimartv", "us_ssh101", "us_3abn",
+]
+
+[[sources]]
+name = "world"
+type = "free-to-air"
+path = "world"

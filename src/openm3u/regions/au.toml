@@ -1,0 +1,42 @@
+code = "au"
+name = "Australia"
+language = "en"
+layout = 1
+logos = ["australia"]
+
+# Radio and short news bulletins aren't TV channels.
+hide = [
+  "SBS Radio*", "SBS Chill", "SBS Arabic", "SBS PopAsia", "SBS South Asian",
+  "* in 90 Seconds", "TVSN*",
+]
+
+featured = [
+  "ABC TV*", "ABC NEWS*", "ABC Kids*", "ABC Family*", "ABC Entertains*", "SBS", "SBS*",
+  "NITV*", "Seven*", "7*", "Nine*", "9*", "10*", "Sky News*",
+]
+
+guides = [
+  "https://epgshare01.online/epgshare01/epg_ripper_AU1.xml.gz",
+  "https://i.mjh.nz/Plex/au.xml.gz",
+  "https://i.mjh.nz/SamsungTVPlus/all.xml.gz",
+]
+
+# The networks keep the numbers locals know: Seven on 7x, Nine on 9x.
+[groups.local]
+name = "Free to Air"
+keep_numbers = true
+
+[aliases]
+"MovieSphere" = "MovieSphere by Lionsgate"
+
+# Free-to-air channels for Sydney, from Matt Huisman's feeds. The networks'
+# pop-up channels come along too and are sorted by their guide's genre.
+[[sources]]
+name = "freeview"
+type = "free-to-air"
+path = "au/Sydney"
+
+[[sources]]
+type = "iptv-org"
+country = "AU"
+files = ["au", "au_samsung"]

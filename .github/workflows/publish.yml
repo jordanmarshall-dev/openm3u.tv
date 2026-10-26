@@ -1,0 +1,79 @@
+name: publish
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - name: Build regions
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          SITE: https://jordanmarshall-dev.github.io/openm3u.tv
+        run: |
+          for region in ca us uk au nz; do
+            if ! timeout 25m openm3u -c site.toml publish --region "$region" --site site; then
+              echo "::warning title=$region::build failed, republishing the last good copy"
+              for file in "$region.m3u" "$region.xml.gz" "$region.json" "state/$region.json"; do
+                curl -fsSL --create-dirs -o "site/$file" "$SITE/$file" || true
+              done
+            fi
+          done
+      - name: Report
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          for path in sorted(pathlib.Path("site").glob("*.json")):
+              s = json.loads(path.read_text())
+              b = s["build"]
+              groups = {}
+              for c in s["channels"]:
+                  groups[c["group"]] = groups.get(c["group"], 0) + 1
+              print(f"::notice title={s['name']}::{len(s['channels'])} channels, "
+                    f"{s['without_guide']} without a guide, {s['unverified']} unverified, "
+                    f"{s.get('checked_in_country', 0)} checked in-country. "
+                    + ", ".join(f"{g} {n}" for g, n in groups.items()))
+              pulled = ", ".join(f"{k} {v}" for k, v in b["sources"].items())
+              dropped = ", ".join(f"{k} {v}" for k, v in b["removed"].items())
+              print(f"::notice title={s['name']} build::pulled {pulled}; "
+                    f"{b.get('guides_matched', 0)} listed from guides, "
+                    f"{b.get('guides_extended', 0)} continued from another guide, "
+                    f"{b.get('topped_up', 0)} gap-filled; dropped {dropped}")
+              if b.get("no_guide"):
+                  print(f"::warning title={s['name']} no guide::{', '.join(b['no_guide'])}")
+              broken = b.get("unavailable", []) + b.get("guides_failed", [])
+              if broken:
+                  print(f"::warning title={s['name']} sources::unreachable: {', '.join(broken)}")
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

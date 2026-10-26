@@ -1,0 +1,22 @@
+{
+ "tree": [
+  {
+   "path": "countries/canada/ctv-news-ca.png"
+  },
+  {
+   "path": "countries/canada/cbc-vancouver-ca.png"
+  },
+  {
+   "path": "countries/canada/cpac-ca.png"
+  },
+  {
+   "path": "countries/canada/cbc-news-network-ca.png"
+  },
+  {
+   "path": "countries/united-states/cbs-news-us.png"
+  },
+  {
+   "path": "countries/canada/readme.md"
+  }
+ ]
+}

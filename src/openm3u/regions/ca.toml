@@ -1,0 +1,114 @@
+code = "ca"
+name = "Canada"
+language = "en"
+# Bump when groups move, so old channel numbers are reassigned once.
+layout = 2
+# Clean logos from tv-logo/tv-logos, looked up by channel name in these folders.
+logos = ["canada", "united-states"]
+
+# Within a group, channels matching these come first, in this order. Everything
+# else follows source by source.
+featured = [
+  "CBC News Network", "CTV News", "CBC News", "Global News National",
+  "CPAC", "ICI RDI", "Radio-Canada INFO", "The Weather Network", "CBS News*", "NBC News*",
+  "ABC News*", "CNN*", "Bloomberg*", "BNN*",
+  "CBC *", "CTV *", "Global *", "CityNews*", "Ici Radio-Canada*", "Corner Gas*",
+  "NFL*", "NBA*", "The NBA*", "NHL*", "MLB*", "TSN*", "UFC", "FIFA+", "DAZN*", "FloHockey*",
+  "Comedy Central*",
+  "TVOKids*", "Nick*", "PBS*", "BBC*", "MTV*", "Paramount*", "AMC*", "MovieSphere*",
+  "Pluto TV *",
+]
+
+# CBC's own local stations need a CBC Gem sign-in now, even in Canada.
+# Committee rooms and untranslated feeds of a legislature aren't channels to browse.
+hide = ["CBCTelevision.ca@*", "*Committees (room*", "*(without interpretation)"]
+
+# Guides for channels whose source doesn't carry one, tried in order.
+# epgshare01's stations are matched by call sign, so "CBC Vancouver (CBUT-DT)"
+# finds "CBC (CBUT) Vancouver, BC" on its own.
+guides = [
+  "https://epgshare01.online/epgshare01/epg_ripper_CA2.xml.gz",
+  "https://i.mjh.nz/Plex/ca.xml.gz",
+  "https://i.mjh.nz/Roku/all.xml.gz",
+]
+
+# Other languages are kept together at the end rather than mixed in.
+[[languages]]
+code = "fr"
+name = "En français"
+start = 1400
+
+# News and Local run west to east. A channel names a place if any of these words
+# appear in its name or the area it serves; channels that don't come first.
+[places]
+"British Columbia" = ["BC", "British Columbia", "Vancouver", "Okanagan", "Colombie-Britannique"]
+"Calgary" = ["Calgary", "Lethbridge"]
+"Edmonton" = ["Edmonton", "Alberta"]
+"Saskatchewan" = ["Saskatchewan", "Saskatoon", "Regina"]
+"Manitoba" = ["Manitoba", "Winnipeg"]
+"Toronto" = ["Toronto", "Peterborough", "Kingston", "Windsor", "Ontario"]
+"Ottawa" = ["Ottawa", "Gatineau"]
+"Quebec" = ["Montreal", "Montréal", "Quebec", "Québec", "Estrie", "Mauricie", "Saguenay", "Est du Québec"]
+"Atlantic" = ["New Brunswick", "Nova Scotia", "Halifax", "PEI", "Prince Edward Island", "Newfoundland", "NL", "Terre-Neuve"]
+"North" = ["North", "Yukon"]
+
+# Same channel, different names on different services.
+[aliases]
+"MovieSphere" = "MovieSphere by Lionsgate"
+"CBC News NL" = "CBC News Newfoundland & Labrador"
+"CBC News British Columbia" = "CBC News BC"
+
+# Sources in order of preference. Stream quality decides first; this order only
+# breaks ties.
+
+[[sources]]
+type = "samsung"
+region = "ca"
+
+[[sources]]
+type = "pluto"
+region = "ca"
+
+# The broadcasters' own streams and everything else iptv-org lists for Canada.
+# Channels matching `include` are carried by name under that label; the rest
+# need a guide to make it in.
+[[sources]]
+type = "iptv-org"
+country = "CA"
+files = ["ca", "ca_stingray"]
+
+[sources.include]
+"CBC News*" = "News"
+"CBC Kids*" = "Kids"
+"CBC Comedy*" = "Comedy"
+"CBC Heartland*" = "Drama"
+"CBC Murdoch*" = "Drama"
+"Ici Radio-Canada Télé*" = "Local"
+"ICI RDI*" = "News"
+"CityNews *" = "News"
+"CPAC*" = "News"
+"TVOKids*" = "Kids"
+
+[[sources]]
+name = "world"
+type = "free-to-air"
+path = "world"
+
+# Channels whose guide listing goes by a different name.
+[guide_names]
+"CPAC" = "[CPAC] Cable Public Affairs Channel"
+"Ici Radio-Canada Télé" = "ICI Tele"
+"CBC Heartland" = "Heartland"
+"CBC Murdoch Mysteries" = "Murdoch Mysteries"
+
+# When a station's own listings are missing, borrow the nearest station on the
+# same network and clock. Only the local news slots differ.
+[guide_fallback]
+"Ici Radio-Canada Télé Ontario" = "Ici Radio-Canada Télé"
+"Ici Radio-Canada Télé Ottawa/Gatineau" = "Ici Radio-Canada Télé"
+"Ici Radio-Canada Télé Est du Québec" = "Ici Radio-Canada Télé"
+"Ici Radio-Canada Télé Saguenay/Lac-St-Jean" = "Ici Radio-Canada Télé"
+"Ici Radio-Canada Télé Estrie" = "Ici Radio-Canada Télé"
+"Ici Radio-Canada Télé Mauricie/Centre-du-Québec" = "Ici Radio-Canada Télé"
+"Ici Radio-Canada Télé Manitoba" = "Ici Radio-Canada Télé Alberta"
+"Ici Radio-Canada Télé Saskatchewan" = "Ici Radio-Canada Télé Alberta"

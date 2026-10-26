@@ -1,0 +1,41 @@
+name: Broken channel
+description: A channel won't play, plays the wrong thing, or has a wrong guide.
+labels: ["broken channel"]
+body:
+  - type: dropdown
+    id: region
+    attributes:
+      label: Country
+      options: [Canada, United States, United Kingdom, Australia, New Zealand]
+    validations:
+      required: true
+  - type: input
+    id: channel
+    attributes:
+      label: Channel
+      description: Its name and number in the playlist.
+      placeholder: 104 CPAC
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What's wrong
+      options:
+        - Won't play
+        - Plays, but it's the wrong channel
+        - Guide is wrong or missing
+        - Wrong group or logo
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where you watched from
+      description: Country and app (TiviMate, Kodi...). Many streams only play in their own country.
+      placeholder: Vancouver, TiviMate on an Onn 4K
+  - type: textarea
+    id: details
+    attributes:
+      label: Anything else

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tv>
+<channel id="CBC.(CBUT).Vancouver,.BC.ca"><display-name>CBC (CBUT) Vancouver, BC</display-name><icon src="https://logos.example/cbc.png"/></channel>
+<channel id="CBUFT.ICI.Radio-Canada.(Vancouver).(IRC).ca"><display-name>CBUFT ICI Radio-Canada (Vancouver) (IRC)</display-name></channel>
+<channel id="CBC.(CBLT).Toronto,.ON.ca"><display-name>CBC (CBLT) Toronto, ON</display-name></channel>
+<channel id="CBC.(CBLT).Toronto,.ON.HD.ca"><display-name>CBC (CBLT) Toronto, ON HD</display-name></channel>
+<channel id="CBC.News.Network.ca"><display-name>CBC News Network</display-name></channel>
+<channel id="CPAC.Ottawa.ca"><display-name>CPAC Ottawa</display-name></channel>
+<programme start="20261024100000 +0000" stop="20261024110000 +0000" channel="CBC.(CBUT).Vancouver,.BC.ca"><title>Vancouver News at 6</title><desc>Part 0.</desc></programme>
+<programme start="20261024110000 +0000" stop="20261024120000 +0000" channel="CBC.(CBUT).Vancouver,.BC.ca"><title>Vancouver News at 6</title><desc>Part 1.</desc></programme>
+<programme start="20261024100000 +0000" stop="20261024110000 +0000" channel="CBUFT.ICI.Radio-Canada.(Vancouver).(IRC).ca"><title>Le Téléjournal</title><desc>Part 0.</desc></programme>
+<programme start="20261024110000 +0000" stop="20261024120000 +0000" channel="CBUFT.ICI.Radio-Canada.(Vancouver).(IRC).ca"><title>Le Téléjournal</title><desc>Part 1.</desc></programme>
+<programme start="20261024100000 +0000" stop="20261024110000 +0000" channel="CBC.(CBLT).Toronto,.ON.ca"><title>Toronto Tonight</title><desc>Part 0.</desc></programme>
+<programme start="20261024110000 +0000" stop="20261024120000 +0000" channel="CBC.(CBLT).Toronto,.ON.ca"><title>Toronto Tonight</title><desc>Part 1.</desc></programme>
+<programme start="20261024120000 +0000" stop="20261024130000 +0000" channel="CBC.(CBLT).Toronto,.ON.ca"><title>Toronto Tonight</title><desc>Part 2.</desc></programme>
+<programme start="20261024100000 +0000" stop="20261024110000 +0000" channel="CBC.(CBLT).Toronto,.ON.HD.ca"><title>Toronto Tonight</title><desc>Part 0.</desc></programme>
+<programme start="20261024110000 +0000" stop="20261024120000 +0000" channel="CBC.(CBLT).Toronto,.ON.HD.ca"><title>Toronto Tonight</title><desc>Part 1.</desc></programme>
+<programme start="20261024120000 +0000" stop="20261024130000 +0000" channel="CBC.(CBLT).Toronto,.ON.HD.ca"><title>Toronto Tonight</title><desc>Part 2.</desc></programme>
+<programme start="20261024100000 +0000" stop="20261024110000 +0000" channel="CBC.News.Network.ca"><title>Power &amp; Politics</title><desc>Part 0.</desc></programme>
+<programme start="20261024110000 +0000" stop="20261024120000 +0000" channel="CBC.News.Network.ca"><title>Power &amp; Politics</title><desc>Part 1.</desc></programme>
+<programme start="20261024100000 +0000" stop="20261024110000 +0000" channel="CPAC.Ottawa.ca"><title>Question Period</title><desc>Part 0.</desc></programme>
+<programme start="20261024110000 +0000" stop="20261024120000 +0000" channel="CPAC.Ottawa.ca"><title>Question Period</title><desc>Part 1.</desc></programme>
+</tv>

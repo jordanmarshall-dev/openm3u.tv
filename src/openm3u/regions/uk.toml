@@ -1,0 +1,85 @@
+code = "uk"
+name = "United Kingdom"
+language = "en"
+layout = 1
+logos = ["united-kingdom"]
+
+# The BBC streams every channel twice; the HEVC copies won't play on every device.
+hide = ["*(HEVC)"]
+
+featured = [
+  "BBC One*", "BBC Two*", "BBC Three*", "BBC Four*", "CBBC*", "CBeebies*", "BBC Scotland*",
+  "BBC Alba*", "S4C*", "BBC News*", "Sky News*", "GB News*", "TalkTV*", "Bloomberg*",
+  "talkSPORT*", "Channel 4*", "Channel 5*", "ITV*", "Dave*", "Talking Pictures*",
+  "Pluto TV *",
+]
+
+guides = [
+  "https://epgshare01.online/epgshare01/epg_ripper_UK1.xml.gz",
+  "https://i.mjh.nz/Plex/gb.xml.gz",
+  "https://i.mjh.nz/SamsungTVPlus/all.xml.gz",
+]
+
+# Free-to-air channels sit below 100, like a Freeview box.
+[groups.local]
+name = "Freeview"
+
+[aliases]
+"MovieSphere" = "MovieSphere by Lionsgate"
+
+# The BBC's own streams and the rest of what iptv-org lists for the UK.
+[[sources]]
+type = "iptv-org"
+country = "GB"
+files = ["uk_bbc", "uk", "uk_distro", "uk_rakuten", "uk_sportstribal"]
+
+[sources.include]
+"BBC One*" = "Local"
+"BBC Two*" = "Local"
+"BBC Three*" = "Local"
+"BBC Four*" = "Local"
+"BBC Scotland*" = "Local"
+"BBC Alba*" = "Local"
+"S4C*" = "Local"
+"CBBC*" = "Kids"
+"CBeebies*" = "Kids"
+"BBC News" = "News"
+"GB News*" = "News"
+"TalkTV*" = "News"
+"Sky News Weather*" = "News"
+"talkSPORT*" = "Sports"
+"Talking Pictures TV*" = "Movies"
+
+[[sources]]
+type = "samsung"
+region = "gb"
+
+[[sources]]
+type = "pluto"
+region = "gb"
+
+[[sources]]
+name = "world"
+type = "free-to-air"
+path = "world"
+
+# The nations and regions run the network schedule apart from local news.
+[guide_fallback]
+"BBC One Channel Islands" = "BBC One"
+"BBC One East" = "BBC One"
+"BBC One East Midlands" = "BBC One"
+"BBC One East Yorkshire" = "BBC One"
+"BBC One London" = "BBC One"
+"BBC One North East" = "BBC One"
+"BBC One North West" = "BBC One"
+"BBC One Northern Ireland HD" = "BBC One"
+"BBC One Scotland" = "BBC One"
+"BBC One South" = "BBC One"
+"BBC One South East" = "BBC One"
+"BBC One South West" = "BBC One"
+"BBC One Wales" = "BBC One"
+"BBC One West" = "BBC One"
+"BBC One West Midlands" = "BBC One"
+"BBC One Yorks" = "BBC One"
+"BBC Two Northern Ireland" = "BBC Two HD"
+"BBC Two Wales" = "BBC Two HD"

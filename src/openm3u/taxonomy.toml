@@ -1,0 +1,187 @@
+# One lineup shape for every country.
+#
+# Each group gets its own hundred, the way cable does it. Labels are what the
+# sources call their categories (Samsung's "News & Opinion", Pluto's "News + Opinion",
+# iptv-org's "news") plus the categories guides put on programmes. They're compared
+# loosely: case, accents, "&" versus "and" and punctuation don't matter.
+#
+# A region can rename or resize a group, or send a label somewhere else, in its own
+# file. Everything else is shared.
+
+fallback = "entertainment"
+series = "series"
+
+[[group]]
+id = "local"
+name = "Local"
+start = 1
+size = 99
+live = true
+sort = "place"
+keep_small = true
+labels = ["local", "free to air"]
+
+[[group]]
+id = "news"
+name = "News"
+start = 100
+live = true
+sort = "place"
+labels = [
+  "news", "news & opinion", "news + opinion", "local news", "news & information",
+  "news/current affairs", "current affairs", "news magazine", "news & documentaries",
+  "weather", "business", "legislative", "debate/interview",
+  "social, political issues, economics",
+]
+hints = [
+  "news", "cnn", "cna", "dw english", "al jazeera", "bloomberg", "parliament", "weather",
+  "cpac", "newsnation", "livenow",
+]
+
+[[group]]
+id = "sports"
+name = "Sports"
+start = 200
+live = true
+labels = [
+  "sports", "sport", "sports & outdoors", "sports other", "sports talk", "us sports",
+  "motor sports", "motorsport", "motorsports", "racing", "auto racing", "drag racing",
+  "motorcycle racing", "football", "soccer", "intl soccer", "australian rules football",
+  "basketball", "3x3 basketball", "baseball", "hockey", "rugby", "rugby league",
+  "rugby union", "cricket", "golf", "netball", "boxing", "mixed martial arts",
+  "martial arts", "martial sports", "ufc", "pro wrestling", "wrestling", "action sports",
+  "olympics", "multisport", "outdoor", "outdoors", "fishing", "surfing", "skateboarding",
+  "snowboarding", "skiing", "sailing", "swimming", "volleyball", "mountain biking",
+  "bicycle", "bicycle racing", "bmx racing", "poker", "card games", "billiards", "bowling",
+]
+hints = [
+  "sport", "sports", "racing", "trackside", "golf", "football", "nfl", "nba", "nhl", "mlb",
+  "ufc", "wrestling", "fifa", "dazn", "poker",
+]
+
+[[group]]
+id = "movies"
+name = "Movies"
+start = 300
+labels = [
+  "movies", "movie", "film", "feature film", "drama movie", "thriller movie",
+  "action movie", "halloween", "halloween hits",
+]
+hints = ["movie", "movies", "moviesphere", "cinema", "film", "films", "flix"]
+
+[[group]]
+id = "entertainment"
+name = "Entertainment"
+start = 400
+labels = [
+  "entertainment", "general", "general entertainment", "family", "light entertainment",
+  "other light entertainment", "drama", "action & drama", "crime drama", "bingeable drama",
+  "drama serial", "family drama series", "historical drama", "independent drama",
+  "inspirational drama", "soap", "romance", "steamy romance", "african-american romance",
+  "action", "adventure", "action & adventure", "military & war action", "war",
+  "sci-fi", "sci-fi + fantasy", "sci-fi & fantasy", "sci-fi & horror", "science fiction",
+  "classic sci-fi & fantasy", "fantasy", "classic", "classic tv", "western & classic tv",
+  "westerns", "western", "family classics", "tv series", "new on pluto tv", "anime",
+  "anime series", "anime & gaming", "gaming", "interactive", "variety", "variety show",
+  "talk", "talk show", "talkshow", "late night tv", "special",
+]
+
+[[group]]
+id = "comedy"
+name = "Comedy"
+start = 500
+labels = [
+  "comedy", "classic tv comedy", "south park", "sitcom", "standup", "stand up",
+  "romantic comedy", "comedy drama", "dramedy", "late night comedies", "screwball",
+  "political comedies", "action comedies", "mockumentaries", "best of british humor",
+  "family/comedy/drama",
+]
+hints = ["comedy", "laughs", "funny"]
+
+[[group]]
+id = "reality"
+name = "Reality"
+start = 600
+labels = [
+  "reality", "reality tv", "reality series", "reality competition", "competition reality",
+  "unscripted competition", "other reality television", "game shows", "game show",
+  "gameshow", "game show/quiz/contest", "quiz", "daytime + game shows",
+  "daytime & talk shows", "dating show", "fails & pranks", "auction",
+]
+
+[[group]]
+id = "crime"
+name = "Crime & Mystery"
+start = 700
+labels = [
+  "crime", "true crime", "mystery", "thriller", "suspense", "paranormal", "supernatural",
+  "supernatural horror", "house of horror", "horror", "sci-fi horror", "cult horror",
+  "b-movie horror", "zombies", "law", "investigations", "crime/law & order series",
+  "courtroom drama",
+]
+hints = ["true crime", "crime", "paranormal", "mystery", "horror"]
+
+[[group]]
+id = "lifestyle"
+name = "Lifestyle & Documentary"
+start = 800
+labels = [
+  "lifestyle", "lifestyle & pop culture", "home & food", "home + food", "living", "food",
+  "cooking", "food & cooking", "food/cooking", "food & travel", "travel",
+  "travel/tourism", "home improvement", "house/garden", "house & garden", "home & garden",
+  "home/gardening", "home & lifestyle", "how-to", "fashion", "health", "health & fitness",
+  "hobbies", "leisure, hobbies", "auto", "motoring", "documentary", "documentaries",
+  "documentary series", "other documentary series", "society documentary", "docudrama",
+  "documentary + science", "nature, history & science", "history + science",
+  "animals + nature", "animals", "nature", "science", "science & technology",
+  "technology", "history", "historical", "biography", "factual", "education",
+  "educational", "education, science", "informational/educational/scho", "culture",
+  "cultural", "arts, culture", "fine arts", "art", "environment", "real life adventure",
+  "special interest", "human interest", "medical", "foreign/expeditions",
+]
+
+[[group]]
+id = "kids"
+name = "Kids"
+start = 900
+labels = [
+  "kids", "kids & family", "kids and family", "kids en français", "children",
+  "children & family", "young kids", "preschool", "pre-school childrens programme",
+  "youth programmes", "cartoons", "animated", "puppets", "ages 5-7", "children-music",
+]
+hints = ["kids", "cartoon", "cartoons", "junior", "toons", "nick jr"]
+
+[[group]]
+id = "music"
+name = "Music"
+start = 1000
+live = true
+labels = [
+  "music", "music videos", "music & ambient", "ambiance", "relax", "pop", "rock", "country",
+  "hip-hop/rap", "soul / r & b", "dance & party", "dance / techno", "classical",
+  "serious / classical music", "music talk", "music/radio", "concert",
+]
+hints = ["music", "hits", "juicetv", "radio", "karaoke"]
+
+# Channels that loop a single show. Nothing maps here by label: they're spotted
+# from their schedule and shelved A to Z.
+[[group]]
+id = "series"
+name = "Series"
+start = 1100
+size = 300
+sort = "name"
+keep_small = true
+
+# Other languages get a block each, after everything else, when the region asks
+# for one. These labels say a channel's language outright.
+[languages]
+es = ["en español", "latino", "latin"]
+fr = ["kids en français", "en français"]
+
+# Left out of every lineup. The key is the reason shown in the build report.
+[skip]
+shopping = ["shop", "shopping", "advertisement/shopping", "infomercial"]
+religion = ["religious", "religion", "faith"]
+adult = ["xxx", "adult"]
+"public access" = ["public access"]

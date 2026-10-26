@@ -1,0 +1,23 @@
+name: Removal request
+description: You own or represent a channel and want it taken off the list.
+labels: ["removal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Open M3U doesn't host, relay or modify any video; it lists links to streams their owners publish for free. If you'd rather your channel wasn't listed, say so here and it will be removed, no questions asked.
+  - type: input
+    id: channel
+    attributes:
+      label: Channel
+    validations:
+      required: true
+  - type: input
+    id: who
+    attributes:
+      label: Who you are
+      description: Your connection to the channel.
+  - type: textarea
+    id: details
+    attributes:
+      label: Anything else

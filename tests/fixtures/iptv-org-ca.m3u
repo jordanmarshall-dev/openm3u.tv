@@ -1,0 +1,19 @@
+#EXTM3U x-tvg-url="https://epg.kanya.io/us/guide.xml.gz"
+#EXTINF:-1 tvg-id="5AABTV.ca@SD",5AAB TV (720p) [Not 24/7]
+http://158.69.124.9:1935/5aabtv/5aabtv/playlist.m3u8
+#EXTINF:-1 tvg-id="CBCNewsNetwork.ca@SD",CBC News Network (720p) [Geo-blocked]
+https://cbcrclinear-tor.akamaized.net/hls/live/2042769/geo_allow_ca/CBCRCLINEAR_TOR_15/master5.m3u8
+#EXTINF:-1 tvg-id="CBCTelevision.ca@CBLTDT",CBC Toronto (CBLT-DT) (720p) [Geo-blocked]
+https://cbcrclinear-tor.akamaized.net/hls/live/2042760/CBCRCLINEAR_TOR_6/master5.m3u8
+#EXTINF:-1 tvg-id="CBCTelevision.ca@CBUTDT",CBC Vancouver (CBUT-DT) (720p) [Geo-blocked]
+https://cbcrclinear-tor.akamaized.net/hls/live/2042768/CBCRCLINEAR_TOR_14/master5.m3u8
+#EXTINF:-1 tvg-id="CityNewsVancouver.ca@SD",CityNews Vancouver (720p)
+https://citynewsregional.akamaized.net/hls/live/1024054/Regional_Live_9/master.m3u8
+#EXTINF:-1 tvg-id="CPACEnglish.ca@SD",CPAC (720p)
+https://d7z3qjdsxbwoq.cloudfront.net/groupa/live/f9809cea-1e07-47cd-a94d-2ddd3e1351db/live.isml/.m3u8
+#EXTINF:-1 tvg-id="IciRadioCanadaTele.ca@CBLFTDT",Ici Radio-Canada Télé Ontario (CBLFT-DT) [Geo-blocked]
+https://rcavlive.akamaized.net/hls/live/704022/cancblft/master.m3u8
+#EXTINF:-1 tvg-id="TVOKids.ca@SD",TVOKids (720p)
+https://fastly.live.brightcove.com/6369851620112/us-east-1/15364602001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0IjoicGZncmlmLmVncmVzcy50N2M3emwiLCJhY2NvdW50X2lkIjoiMTUzNjQ2MDIwMDEiLCJlaG4iOiJmYXN0bHkubGl2ZS5icmlnaHRjb3ZlLmNvbSIsImlzcyI6ImJsaXZlLXBsYXliYWNrLXNvdXJjZS1hcGkiLCJzdWIiOiJwYXRobWFwdG9rZW4iLCJhdWQiOlsiMTUzNjQ2MDIwMDEiXSwianRpIjoiNjM2OTg1MTYyMDExMiJ9.zRE6fD9JwdbNLUIK5zgvlTAvXCQ3HeeE5p0yH0Pd3-Q/playlist-hls.m3u8
+#EXTINF:-1 tvg-id="TVOKids.ca@SD",TVOKids
+https://bcovlive-a.akamaihd.net/rf86f817779524249abf842af6d16f55f/us-east-1/15364602001/playlist.m3u8

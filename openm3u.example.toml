@@ -1,0 +1,59 @@
+# Copy to openm3u.toml and adjust. Every key is optional.
+
+region = "ca"
+output_dir = "output"
+state_dir = "state"
+
+# Where the playlist and guide will be reachable, e.g. "http://192.168.1.20:8787" or
+# your own site. Used for the guide link inside the playlist. Leave blank if unsure.
+public_url = ""
+
+guide_hours = 48
+
+# Which copy wins when the same channel has equal quality on two services.
+# Defaults to the order sources are listed in the region file.
+# source_priority = ["samsung", "pluto", "iptv-org"]
+
+[filters]
+# Channels that just loop one show (Ink Master, COPS, Frasier...):
+#   "group" moves them into their own Series group, "hide" drops them, "off" leaves them be.
+single_show = "group"
+# Names (or name prefixes) that stay in their genre group even if they loop one show.
+keep = []
+# Names, name prefixes, or patterns with * (matched against names and source ids).
+hide = []
+# Channels in another language: "group" keeps them together in their own block at the
+# end of the guide (when the region has one), "hide" drops them.
+other_languages = "group"
+# Drop working streams whose best quality is below this height. 0 keeps everything.
+min_height = 720
+
+# Pin a channel to a number. Everything else is numbered automatically and stays put.
+[numbers]
+# "CBC News" = 100
+
+# Move a channel to a different group, by the group's name or id.
+[groups]
+# "APTN Beyond" = "Lifestyle & Documentary"
+
+# Treat differently named channels as the same channel when deduplicating.
+[aliases]
+# "CBS News 24/7" = "CBS News"
+
+[health]
+concurrency = 6
+timeout = 10
+# Set to the country you build from. Streams from other regions that refuse you
+# are kept as "unverified" instead of dropped.
+# runs_in = "ca"
+
+[tmdb]
+# Put your key in the TMDB_API_KEY environment variable rather than here.
+# "landscape" uses TMDB backdrops (best in TiviMate), "poster" uses portrait posters.
+art = "landscape"
+
+# Point sources at local copies, for offline builds.
+# [mirrors]
+# "https://i.mjh.nz" = "/path/to/matthuisman/i.mjh.nz"
+# "https://raw.githubusercontent.com/iptv-org/iptv/master/streams" = "/path/to/iptv-org/iptv/streams"
+# "https://raw.githubusercontent.com/iptv-org/database/master/data" = "/path/to/iptv-org/database/data"
